@@ -1,0 +1,30 @@
+{
+  "name": "@spissvinkel/dsl-parser",
+  "version": "0.1.0",
+  "description": "A simple parser library for expressions and domain specific languages, written in Typescript",
+  "keywords": [
+    "dsl",
+    "domain",
+    "specific",
+    "language",
+    "expression",
+    "parser",
+    "combinator",
+    "library",
+    "typescript"
+  ],
+  "author": "Simen Storsveen <code@simenstorsveen.no>",
+  "license": "MIT",
+  "repository": "github:spissvinkel/dsl-parser-ts",
+  "homepage": "https://spissvinkel.github.io/dsl-parser-ts/",
+  "scripts": {
+    "build": "build.sh ADVANCED",
+    "lint": "eslint . --ext .js,.ts"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.3.1",
+    "@typescript-eslint/parser": "^5.3.1",
+    "eslint": "^8.2.0",
+    "typescript": "^4.4.4"
+  }
+}
