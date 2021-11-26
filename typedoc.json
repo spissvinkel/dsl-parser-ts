@@ -1,0 +1,7 @@
+{
+  "out": "./docs/api",
+  "name": "@spissvinkel/dsl-parser",
+  "includeVersion": true,
+  "readme": "none",
+  "excludeInternal": true
+}

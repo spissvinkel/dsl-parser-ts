@@ -5,6 +5,7 @@ node_modules
 build
 dist
 public
+docs
 
 .eslintrc.js
 webpack.config.js
