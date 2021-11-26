@@ -2,8 +2,7 @@
 
 # Remove previous build
 echo "cleaning..."
-#rm -rf ./*.d.ts ./*.js ./*.map ./dist/* #./build/*
-rm -rf ./dist/* #./build/*
+rm -rf ./*.d.ts ./*.js ./*.map ./dist/* ./build/*
 
 
 # Compile typescript to javascript (configured by tsconfig.json)
@@ -12,5 +11,5 @@ npx tsc
 
 
 # Lint source code
-#echo "linting source code..."
-#npx eslint . --ext .js,.ts
+echo "linting source code..."
+npx eslint . --ext .js,.ts

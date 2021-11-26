@@ -1,6 +1,6 @@
 # DSL Parser
 
-A simple parser library for expressions and domain specific languages, written in Typescript.
+A simple parser combinator library for expressions and domain specific languages, written in Typescript.
 
 
 ## Install dependencies
