@@ -16,6 +16,7 @@ export abstract class Parser<S, T> {
         return result;
     }
 
+    flatMap    <U> (f: (t: T) => Parser<S, U>)                : Parser<S, U>            { return flatMap(this, f); }
     map        <U> (f: (t: T) => U)                           : Parser<S, U>            { return map(this, f); }
     tryMap     <U> (f: (t: T) => Result<S, U>)                : Parser<S, U>            { return tryMap(this, f); }
     recover    <U> (f: (errorMessage: string) => U)           : Parser<S, U>            { return recover(this, f); }
@@ -54,6 +55,29 @@ export abstract class CombinatorParser<S, T, U, V> extends DecoratorParser<S, T,
     }
 
     abstract parse(input: Input<S>): Result<S, V>;
+}
+
+export class FlatMapParser<S, T, U> extends DecoratorParser<S, T, U> {
+
+    private readonly f: (t: T) => Parser<S, U>;
+
+    constructor(p: Parser<S, T>, f: (t: T) => Parser<S, U>) {
+        super(p);
+        this.f = f;
+    }
+
+    parse(input: Input<S>): Result<S, U> {
+        const pResult = this.p.parse(input);
+        if (pResult instanceof Success) {
+            const q = this.f(pResult.value);
+            const qResult = q.parse(pResult.nextInput);
+            if (qResult instanceof Success) return success(qResult.value, qResult.nextInput);
+            if (qResult instanceof Failure) return qResult;
+            return failure('Unknown result type', pResult.nextInput);
+        }
+        if (pResult instanceof Failure) return pResult;
+        return failure('Unknown result type', input);
+    }
 }
 
 export class MapParser<S, T, U> extends DecoratorParser<S, T, U> {
@@ -212,6 +236,7 @@ export class FailParser<S, T> extends TerminalParser<S, T> {
 }
 
 
+export const flatMap    = <S, T, U> (p: Parser<S, T>, f: (t: T) => Parser<S, U>)                : Parser<S, U>            => new FlatMapParser(p, f);
 export const map        = <S, T, U> (p: Parser<S, T>, f: (t: T) => U)                           : Parser<S, U>            => new MapParser(p, f);
 export const tryMap     = <S, T, U> (p: Parser<S, T>, f: (t: T) => Result<S, U>)                : Parser<S, U>            => new TryMapParser(p, f);
 export const recover    = <S, T, U> (p: Parser<S, T>, f: (errorMessage: string) => U)           : Parser<S, U>            => new RecoverParser(p, f);
