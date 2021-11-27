@@ -2,7 +2,7 @@
 
 # Remove previous build
 echo "cleaning..."
-rm -rf ./*.d.ts ./*.js ./*.map ./dist/* ./build/*
+rm -rf ./*.d.ts ./*.js ./*.map ./*.tsbuildinfo ./dist/* ./build/*
 
 
 # Compile typescript to javascript (configured by tsconfig.json)
