@@ -1,6 +1,6 @@
 {
   "name": "@spissvinkel/dsl-parser",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "A simple parser combinator library for expressions and domain specific languages, written in Typescript",
   "keywords": [
     "dsl",
@@ -21,8 +21,8 @@
     "*.js",
     "*.d.ts",
     "*.map"
-],
-"scripts": {
+  ],
+  "scripts": {
     "build": "build.sh ADVANCED",
     "lint": "eslint . --ext .js,.ts"
   },
