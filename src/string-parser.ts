@@ -69,3 +69,5 @@ export const floatStr  : Parser<string, string> = re('[+-]?(?:0|[1-9]\\d*)(?:\\.
 export const float     : Parser<string, number> = floatStr.map(Number.parseFloat);
 
 export const parseAll = <T>(s: string, p: Parser<string, T>): Result<string, T> => p.parseAll(new StringInput(s));
+
+export type StrParser<T> = Parser<string, T>;
